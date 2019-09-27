@@ -2,8 +2,8 @@
 
 namespace Motomedialab\RuntimeStore\Tests;
 
-use Motomedialab\RuntimeStore\RuntimeStore;
 use PHPUnit\Framework\TestCase;
+use Motomedialab\RuntimeStore\RuntimeStore;
 
 class RuntimeStoreTest extends TestCase
 {
@@ -20,16 +20,16 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function store_can_set_values()
+    public function store_can_set_values()
     {
         $this->store->set('test', 'value');
         $this->assertEquals('value', $this->store->get('test'));
     }
 
     /**
- * @test
- **/
-    function put_stores_values()
+     * @test
+     **/
+    public function put_stores_values()
     {
         $this->store->put('key', 'value');
         $this->assertEquals('value', $this->store->get('key'));
@@ -38,7 +38,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function add_stores_values()
+    public function add_stores_values()
     {
         $this->store->add('key', 'value');
         $this->assertEquals('value', $this->store->get('key'));
@@ -47,7 +47,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function store_can_forget_values()
+    public function store_can_forget_values()
     {
         $this->store->set('test', 'value');
         $this->assertEquals('value', $this->store->get('test'));
@@ -59,7 +59,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function forget_can_forget_multiple_values()
+    public function forget_can_forget_multiple_values()
     {
         $keys = ['key1', 'key2', 'key3'];
         foreach ($keys as $key) {
@@ -80,7 +80,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function pull_forgets_value_after_retrieving()
+    public function pull_forgets_value_after_retrieving()
     {
         $this->store->set('key', 'value');
 
@@ -91,7 +91,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function store_can_check_it_has_value()
+    public function store_can_check_it_has_value()
     {
         $this->store->set('test', false);
         $this->assertTrue($this->store->has('test'));
@@ -100,7 +100,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function store_can_have_default_values()
+    public function store_can_have_default_values()
     {
         $this->assertEquals('unset', $this->store->get('test', 'unset'));
     }
@@ -108,7 +108,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function remember_can_evaluate_closure()
+    public function remember_can_evaluate_closure()
     {
         $value = ['test1', 'test2'];
         $this->store->remember('key', function () use ($value) {
@@ -121,7 +121,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function remember_doesnt_evaluate_functions_a_second_time()
+    public function remember_doesnt_evaluate_functions_a_second_time()
     {
         $this->store->remember('key', function () {
             return ['value' => 'call1'];
@@ -137,7 +137,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function value_can_be_incremented()
+    public function value_can_be_incremented()
     {
         $this->store->set('key', 104);
 
@@ -149,7 +149,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function increment_on_unset_initialises_value()
+    public function increment_on_unset_initialises_value()
     {
         $this->store->increment('key', 10);
         $this->assertEquals(10, $this->store->get('key'));
@@ -158,7 +158,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function value_can_be_decremented()
+    public function value_can_be_decremented()
     {
         $this->store->set('key', 104);
 
@@ -170,7 +170,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function decrement_on_unset_initialises_value()
+    public function decrement_on_unset_initialises_value()
     {
         $this->store->decrement('key', 10);
         $this->assertEquals(10, $this->store->get('key'));
@@ -179,7 +179,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function clearing_store_empties_entire_cache()
+    public function clearing_store_empties_entire_cache()
     {
         foreach ($keys = ['test1', 'test2', 'test3'] as $key) {
             $this->store->set($key, 'value');

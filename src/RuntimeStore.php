@@ -25,7 +25,7 @@ class RuntimeStore
     }
 
     /**
-     * Alias of set
+     * Alias of set.
      *
      * @param string $key
      * @param mixed  $value
@@ -38,7 +38,7 @@ class RuntimeStore
     }
 
     /**
-     * Alias of set
+     * Alias of set.
      *
      * @param string $key
      * @param mixed  $value
@@ -51,7 +51,7 @@ class RuntimeStore
     }
 
     /**
-     * Increment a stored value
+     * Increment a stored value.
      *
      * @param string $key
      * @param int $incrementBy
@@ -68,7 +68,7 @@ class RuntimeStore
     }
 
     /**
-     * Decrement a stored value
+     * Decrement a stored value.
      *
      * @param string $key
      * @param int $decrementBy
@@ -132,7 +132,7 @@ class RuntimeStore
     }
 
     /**
-     * Remove one or more values from our store
+     * Remove one or more values from our store.
      *
      * @param string|array $keys
      *
@@ -169,6 +169,7 @@ class RuntimeStore
     public function clear()
     {
         $this->store = [];
+
         return $this;
     }
 
@@ -185,6 +186,7 @@ class RuntimeStore
         if ($this->has($key)) {
             $return = $this->get($key, $default);
             $this->delete($key);
+
             return $return;
         }
 
