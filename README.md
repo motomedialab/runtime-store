@@ -1,6 +1,6 @@
 # Runtime data store - simple runtime value caching
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/motomedialab/request-store.svg?style=flat-square)](https://packagist.org/packages/motomedialab/runtime-store)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/motomedialab/runtime-store.svg?style=flat-square)](https://packagist.org/packages/motomedialab/runtime-store)
 [![StyleCI Code Quality](https://github.styleci.io/repos/211288585/shield?style=flat-square)](https://github.styleci.io/repos/211288585)
 [![Build Status](https://img.shields.io/travis/motomedialab/runtime-store/master.svg?style=flat-square)](https://travis-ci.org/motomedialab/runtime-store)
 [![Total Downloads](https://img.shields.io/packagist/dt/motomedialab/runtime-store.svg?style=flat-square)](https://packagist.org/packages/motomedialab/runtime-store)
