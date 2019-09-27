@@ -108,7 +108,7 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
-    function store_can_evaluate_closure()
+    function remember_can_evaluate_closure()
     {
         $value = ['test1', 'test2'];
         $this->store->remember('key', function () use ($value) {
@@ -116,6 +116,22 @@ class RuntimeStoreTest extends TestCase
         });
 
         $this->assertEquals($value, $this->store->get('key'));
+    }
+
+    /**
+     * @test
+     **/
+    function remember_doesnt_evaluate_functions_a_second_time()
+    {
+        $this->store->remember('key', function () {
+            return ['value' => 'call1'];
+        });
+
+        $result = $this->store->remember('key', function () {
+            return ['value' => 'call2'];
+        });
+
+        $this->assertEquals(['value' => 'call1'], $result);
     }
 
     /**
@@ -133,6 +149,15 @@ class RuntimeStoreTest extends TestCase
     /**
      * @test
      **/
+    function increment_on_unset_initialises_value()
+    {
+        $this->store->increment('key', 10);
+        $this->assertEquals(10, $this->store->get('key'));
+    }
+
+    /**
+     * @test
+     **/
     function value_can_be_decremented()
     {
         $this->store->set('key', 104);
@@ -140,6 +165,15 @@ class RuntimeStoreTest extends TestCase
         $this->store->decrement('key', 2);
 
         $this->assertEquals(102, $this->store->get('key'));
+    }
+
+    /**
+     * @test
+     **/
+    function decrement_on_unset_initialises_value()
+    {
+        $this->store->decrement('key', 10);
+        $this->assertEquals(10, $this->store->get('key'));
     }
 
     /**
