@@ -2,7 +2,7 @@
 
 use Motomedialab\RuntimeStore\RuntimeStore;
 
-if (!function_exists('store')) {
+if (! function_exists('store')) {
     /**
      * @return RuntimeStore
      */
