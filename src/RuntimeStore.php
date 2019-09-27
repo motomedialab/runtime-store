@@ -2,51 +2,115 @@
 
 namespace Motomedialab\RuntimeStore;
 
+use Closure;
+
 class RuntimeStore
 {
     private $store = [];
 
     /**
-     * Set a value against our store
+     * Set a value against our store.
      *
      * @param string $key
      * @param mixed  $value
      *
      * @return mixed
      */
-    public function set(string $key, $value)
+    public function set($key, $value)
     {
-        $this->store[$key] = is_callable($value)
+        $this->store[$key] = $value instanceof Closure
             ? $value() : $value;
 
         return $this->store[$key];
     }
 
     /**
-     * Unset a value from our store
+     * Alias of set
      *
      * @param string $key
+     * @param mixed  $value
      *
-     * @return $this
+     * @return mixed
      */
-    public function unset(string $key)
+    public function put($key, $value)
     {
-        if (array_key_exists($key, $this->store)) {
-            unset($this->store[$key]);
-        }
-
-        return $this;
+        return $this->set($key, $value);
     }
 
     /**
-     * Retrieve a value from our store
+     * Alias of set
+     *
+     * @param string $key
+     * @param mixed  $value
+     *
+     * @return mixed
+     */
+    public function add($key, $value)
+    {
+        return $this->set($key, $value);
+    }
+
+    /**
+     * Increment a stored value
+     *
+     * @param string $key
+     * @param int $incrementBy
+     *
+     * @return bool|int|mixed
+     */
+    public function increment($key, $incrementBy = 1)
+    {
+        if ($this->has($key) && is_numeric($this->get($key))) {
+            return $this->set($key, $this->get($key) + $incrementBy);
+        }
+
+        return $this->set($key, $incrementBy);
+    }
+
+    /**
+     * Decrement a stored value
+     *
+     * @param string $key
+     * @param int $decrementBy
+     *
+     * @return bool|int|mixed
+     */
+    public function decrement($key, $decrementBy = 1)
+    {
+        if ($this->has($key) && is_numeric($this->get($key))) {
+            return $this->set($key, $this->get($key) - $decrementBy);
+        }
+
+        return $this->set($key, $decrementBy);
+    }
+
+    /**
+     * Set a value to our store, or return the existing value
+     * if already available within the store.
+     *
+     * @param string  $key
+     * @param Closure $value
+     *
+     * @return mixed
+     */
+    public function remember($key, Closure $value)
+    {
+        if ($this->has($key)) {
+            return $this->get($key);
+        }
+
+        return $this->set($key, $value);
+    }
+
+    /**
+     * Retrieve a value from our store.
      *
      * @param string $key
      * @param mixed  $default
      *
      * @return mixed
      */
-    public function get(string $key, $default = false)
+    public function get($key, $default = false)
     {
         if ($this->has($key)) {
             return $this->store[$key];
@@ -56,32 +120,74 @@ class RuntimeStore
     }
 
     /**
-     * Determine if our store already has a particular value
+     * Determine if our store already has a particular value.
      *
      * @param string $key
      *
      * @return bool
      */
-    public function has(string $key)
+    public function has($key)
     {
         return array_key_exists($key, $this->store);
     }
 
     /**
-     * Set a value to our store, or return the existing value
-     * if already available within the store
+     * Remove one or more values from our store
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param string|array $keys
      *
-     * @return mixed
+     * @return $this
      */
-    public function remember(string $key, $value)
+    public function forget($keys)
     {
-        if ($this->has($key)) {
-            return $this->get($key);
+        $keys = is_array($keys) ? $keys : [$keys];
+
+        foreach ($keys as $key) {
+            if ($this->has($key)) {
+                unset($this->store[$key]);
+            }
         }
 
-        return $this->set($key, $value);
+        return $this;
+    }
+
+    /**
+     * Alias of forget.
+     *
+     * @param string $key
+     */
+    public function delete($key)
+    {
+        $this->forget($key);
+    }
+
+    /**
+     * Clear all cached values.
+     *
+     * @return $this
+     */
+    public function clear()
+    {
+        $this->store = [];
+        return $this;
+    }
+
+    /**
+     * Retrieve an item from the store and delete it.
+     *
+     * @param      $key
+     * @param bool $default
+     *
+     * @return bool|mixed
+     */
+    public function pull($key, $default = false)
+    {
+        if ($this->has($key)) {
+            $return = $this->get($key, $default);
+            $this->delete($key);
+            return $return;
+        }
+
+        return $default;
     }
 }

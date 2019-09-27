@@ -9,6 +9,8 @@ This is a simple package that allows caching of values for the duration of Larav
 This is particularly useful in cases where scripts may be called multiple times and depend on
 third parties or query calls to return data.
 
+The package utilises a similar API to Laravel's `cache` and `session` helpers.
+
 ## Installation
 
 You can install the package via composer:
@@ -22,12 +24,40 @@ composer require motomedialab/runtime-store
 ``` php
 // set a value
 store()->set('key', 'value')
+store()->put('key', 'value')
+store()->add('key', 'value')
+
+// check a value exists
+store()->has('key')
 
 // retrieve a value
 store()->get('key'); // will return value
+store()->get('key', 'default'); // has a default value
 
-// retrieve a value with a custom default
-store()->get('key', 'default');
+// remember a value once set
+store()->remember('key', function () {
+
+  // remember method will only execute the callback
+  // once per runtime and return the stored value
+  // on additional calls.
+
+  return ['data' => 'value'];
+});
+
+// increment / decrement numerical values
+store()->increment('key', 1)
+store()->decrement('key', 1)
+
+// forget a value after retrieving
+store()->pull('key')
+
+// forget a value/ multiple values
+store()->forget('key')
+store()->delete('key')
+store()->forget(['key1', 'key2'])
+
+// forget all values
+store()->clear()
 ```
 
 ### Testing
