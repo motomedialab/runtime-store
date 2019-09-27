@@ -21,6 +21,8 @@ composer require motomedialab/runtime-store
 
 ## Usage
 
+Runtime store comes with a global helper `store()` function which we recommend using. These are demonstrated as defaults below.
+
 ``` php
 // set a value
 store()->set('key', 'value')
@@ -58,6 +60,13 @@ store()->forget(['key1', 'key2'])
 
 // forget all values
 store()->clear()
+```
+
+Additionally, you can call the runtime store via the app resolver - 
+
+```php
+app('store')->set('key', 'value');
+resolve('store')->set('key', 'value');
 ```
 
 ### Testing
