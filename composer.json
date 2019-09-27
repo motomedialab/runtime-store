@@ -1,0 +1,57 @@
+{
+    "name": "motomedialab/runtime-store",
+    "description": "Store data to be shared across application for the duration of the applications runtime",
+    "keywords": [
+        "motomedialab",
+        "runtime-store"
+    ],
+    "homepage": "https://github.com/motomedialab/runtime-store",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Chris Page",
+            "email": "hello@motomedialab.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "laravel/framework": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.8.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Motomedialab\\RuntimeStore\\": "src"
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Motomedialab\\RuntimeStore\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Motomedialab\\RuntimeStore\\RuntimeStoreServiceProvider"
+            ],
+            "aliases": {
+                "RuntimeStore": "Motomedialab\\RuntimeStore\\RuntimeStoreFacade"
+            }
+        }
+    }
+}
