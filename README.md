@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/motomedialab/request-store.svg?style=flat-square)](https://packagist.org/packages/motomedialab/runtime-store)
 [![Build Status](https://img.shields.io/travis/motomedialab/runtime-store/master.svg?style=flat-square)](https://travis-ci.org/motomedialab/runtime-store)
-[![Quality Score](https://img.shields.io/scrutinizer/g/motomedialab/runtime-store.svg?style=flat-square)](https://scrutinizer-ci.com/g/motomedialab/runtime-store)
 [![Total Downloads](https://img.shields.io/packagist/dt/motomedialab/runtime-store.svg?style=flat-square)](https://packagist.org/packages/motomedialab/runtime-store)
 
 This is a simple package that allows caching of values for the duration of Laravel's runtime.
@@ -20,6 +19,8 @@ composer require motomedialab/runtime-store
 ```
 
 ## Usage
+
+Runtime store comes with a global helper `store()` function which we recommend using. These are demonstrated as defaults below.
 
 ``` php
 // set a value
@@ -58,6 +59,13 @@ store()->forget(['key1', 'key2'])
 
 // forget all values
 store()->clear()
+```
+
+Additionally, you can call the runtime store via the app resolver - 
+
+```php
+app('store')->set('key', 'value');
+resolve('store')->set('key', 'value');
 ```
 
 ### Testing
