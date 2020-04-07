@@ -2,8 +2,8 @@
 
 namespace Motomedialab\RuntimeStore\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Motomedialab\RuntimeStore\RuntimeStore;
+use PHPUnit\Framework\TestCase;
 
 class RuntimeStoreTest extends TestCase
 {
