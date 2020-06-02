@@ -16,21 +16,19 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "illuminate/container": "^5.8|^6.0"
-
+        "php": "^7.1"
     },
     "require-dev": {
         "orchestra/testbench": "3.8.*",
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
-        "psr-4": {
-            "Motomedialab\\RuntimeStore\\": "src"
-        },
         "files": [
             "src/Helpers.php"
-        ]
+        ],
+        "psr-4": {
+            "Motomedialab\\RuntimeStore\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {

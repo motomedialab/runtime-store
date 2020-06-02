@@ -3,13 +3,22 @@
 namespace Motomedialab\RuntimeStore;
 
 use Closure;
+use Motomedialab\RuntimeStore\Traits\HasStoreGroups;
 
 class RuntimeStore
 {
+    use HasStoreGroups;
+
+    /**
+     * Key store.
+     *
+     * @var array
+     */
     private $store = [];
 
     /**
      * Set a value against our store.
+     * Core method.
      *
      * @param string $key
      * @param mixed  $value
@@ -22,6 +31,45 @@ class RuntimeStore
             ? $value() : $value;
 
         return $this->store[$key];
+    }
+
+    /**
+     * Retrieve a value from our store.
+     * Core method.
+     *
+     * @param string $key
+     * @param mixed  $default
+     *
+     * @return mixed
+     */
+    public function get($key, $default = false)
+    {
+        if ($this->has($key)) {
+            return $this->store[$key];
+        }
+
+        return $default;
+    }
+
+    /**
+     * Remove one or more values from our store.
+     * Core method.
+     *
+     * @param string|array $keys
+     *
+     * @return $this
+     */
+    public function forget($keys)
+    {
+        $keys = is_array($keys) ? $keys : [$keys];
+
+        foreach ($keys as $key) {
+            if ($this->has($key)) {
+                unset($this->store[$key]);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -103,23 +151,6 @@ class RuntimeStore
     }
 
     /**
-     * Retrieve a value from our store.
-     *
-     * @param string $key
-     * @param mixed  $default
-     *
-     * @return mixed
-     */
-    public function get($key, $default = false)
-    {
-        if ($this->has($key)) {
-            return $this->store[$key];
-        }
-
-        return $default;
-    }
-
-    /**
      * Determine if our store already has a particular value.
      *
      * @param string $key
@@ -129,26 +160,6 @@ class RuntimeStore
     public function has($key)
     {
         return array_key_exists($key, $this->store);
-    }
-
-    /**
-     * Remove one or more values from our store.
-     *
-     * @param string|array $keys
-     *
-     * @return $this
-     */
-    public function forget($keys)
-    {
-        $keys = is_array($keys) ? $keys : [$keys];
-
-        foreach ($keys as $key) {
-            if ($this->has($key)) {
-                unset($this->store[$key]);
-            }
-        }
-
-        return $this;
     }
 
     /**
