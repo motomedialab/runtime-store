@@ -57,5 +57,4 @@ trait HasStoreGroups
             unset($this->groups[$name]);
         }
     }
-
 }
