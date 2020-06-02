@@ -6,13 +6,11 @@
 
 namespace Motomedialab\RuntimeStore\Tests;
 
-
 use Motomedialab\RuntimeStore\RuntimeStore;
 use PHPUnit\Framework\TestCase;
 
 class RuntimeStoreGroupTest extends TestCase
 {
-
     /** @var RuntimeStore */
     public $store;
 
@@ -62,5 +60,4 @@ class RuntimeStoreGroupTest extends TestCase
         $this->store->deleteGroup('testing');
         $this->assertFalse($this->store->hasGroup('testing'));
     }
-
 }

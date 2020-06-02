@@ -8,7 +8,6 @@ namespace Motomedialab\RuntimeStore;
 
 use Illuminate\Support\Facades\Facade;
 
-
 class RuntimeStoreFacade extends Facade
 {
     protected static function getFacadeAccessor()

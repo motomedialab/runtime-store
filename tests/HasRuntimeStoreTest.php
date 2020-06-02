@@ -18,7 +18,6 @@ class TestModel extends Model
 
 class HasRuntimeStoreTest extends TestCase
 {
-
     /**
      * @test
      **/
@@ -28,5 +27,4 @@ class HasRuntimeStoreTest extends TestCase
 
         $this->assertInstanceOf(RuntimeStore::class, $model->store());
     }
-
 }

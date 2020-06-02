@@ -6,7 +6,6 @@
 
 namespace Motomedialab\RuntimeStore\Traits;
 
-
 use Motomedialab\RuntimeStore\RuntimeStore;
 
 /**
@@ -46,7 +45,6 @@ trait HasStoreGroups
     {
         return isset($this->groups[$name]);
     }
-
 
     /**
      * Delete a group store.
