@@ -3,9 +3,17 @@
 namespace Motomedialab\RuntimeStore;
 
 use Closure;
+use Motomedialab\RuntimeStore\Traits\HasStoreGroups;
 
 class RuntimeStore
 {
+    use HasStoreGroups;
+
+    /**
+     * Key store.
+     *
+     * @var array
+     */
     private $store = [];
 
     /**

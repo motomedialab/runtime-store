@@ -23,5 +23,7 @@ class RuntimeStoreServiceProvider extends ServiceProvider
         $this->app->singleton('store', function () {
             return new RuntimeStore;
         });
+
+        $this->app->singleton(RuntimeStore::class, 'store');
     }
 }
