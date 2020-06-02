@@ -5,11 +5,11 @@
 [![Build Status](https://img.shields.io/travis/motomedialab/runtime-store/master.svg?style=flat-square)](https://travis-ci.org/motomedialab/runtime-store)
 [![Total Downloads](https://img.shields.io/packagist/dt/motomedialab/runtime-store.svg?style=flat-square)](https://packagist.org/packages/motomedialab/runtime-store)
 
-This is a simple package that allows caching of values for the duration of Laravel's runtime.
-This is particularly useful in cases where scripts may be called multiple times and depend on
+A simple framework-agnostic package that allows caching of values for the duration of a requests lifetime.
+This is particularly useful in cases where scripts may be called on multiple times and depend on
 third parties or query calls to return data.
 
-The package utilises a similar API to Laravel's `cache` and `session` helpers.
+The package utilises a similar API to Laravel's `cache` and `session` helpers and has native support for Laravel.
 
 ## Installation
 

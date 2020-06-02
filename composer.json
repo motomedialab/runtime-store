@@ -23,6 +23,9 @@
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
+        "files": [
+            "src/Helpers.php"
+        ],
         "psr-4": {
             "Motomedialab\\RuntimeStore\\": "src"
         }
@@ -40,13 +43,6 @@
     },
     "extra": {
         "laravel": {
-            "autoload": {
-                "psr-4": {
-                    "files": [
-                        "src/Helpers.php"
-                    ]
-                }
-            },
             "providers": [
                 "Motomedialab\\RuntimeStore\\RuntimeStoreServiceProvider"
             ],
