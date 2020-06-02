@@ -10,9 +10,8 @@ namespace Motomedialab\RuntimeStore\Traits;
 use Motomedialab\RuntimeStore\RuntimeStore;
 
 /**
- * Trait HasStoreGroups
+ * Trait HasStoreGroups.
  *
- * @package Motomedialab\RuntimeStore\Traits
  * @mixin RuntimeStore
  */
 trait HasStoreGroups

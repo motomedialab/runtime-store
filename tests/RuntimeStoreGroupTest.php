@@ -26,7 +26,7 @@ class RuntimeStoreGroupTest extends TestCase
     /**
      * @test
      **/
-    function groups_can_be_created()
+    public function groups_can_be_created()
     {
         $this->assertInstanceOf(RuntimeStore::class, $this->store->group('testing'));
     }
@@ -34,7 +34,7 @@ class RuntimeStoreGroupTest extends TestCase
     /**
      * @test
      **/
-    function groups_can_persist_values()
+    public function groups_can_persist_values()
     {
         $this->store->group('testing')->set('testing', 'value');
 
@@ -44,7 +44,7 @@ class RuntimeStoreGroupTest extends TestCase
     /**
      * @test
      **/
-    function groups_do_not_influence_primary_store()
+    public function groups_do_not_influence_primary_store()
     {
         $this->store->group('testing')->set('testing', 'value');
 
@@ -54,7 +54,7 @@ class RuntimeStoreGroupTest extends TestCase
     /**
      * @test
      **/
-    function groups_can_be_deleted()
+    public function groups_can_be_deleted()
     {
         $this->store->group('testing');
         $this->assertTrue($this->store->hasGroup('testing'));

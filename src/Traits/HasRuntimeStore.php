@@ -10,9 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Motomedialab\RuntimeStore\RuntimeStore;
 
 /**
- * Trait HasRuntimeStore
- *
- * @package Motomedialab\RuntimeStore\Traits
+ * Trait HasRuntimeStore.
  *
  * @mixin Model
  */
