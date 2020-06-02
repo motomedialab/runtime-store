@@ -16,9 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "illuminate/container": "*"
-
+        "php": "^7.1"
     },
     "require-dev": {
         "orchestra/testbench": "3.8.*",
@@ -27,10 +25,7 @@
     "autoload": {
         "psr-4": {
             "Motomedialab\\RuntimeStore\\": "src"
-        },
-        "files": [
-            "src/Helpers.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
@@ -45,6 +40,13 @@
     },
     "extra": {
         "laravel": {
+            "autoload": {
+                "psr-4": {
+                    "files": [
+                        "src/Helpers.php"
+                    ]
+                }
+            },
             "providers": [
                 "Motomedialab\\RuntimeStore\\RuntimeStoreServiceProvider"
             ],
