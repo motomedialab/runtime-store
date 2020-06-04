@@ -90,7 +90,8 @@ There are many ways to access the store and you can write your own implementatio
   
 ```php  
 // in Laravel, there are multiple ways to resolve a global instance of the store...  
-app(\Motomedialab\RuntimeStore\RuntimeStore::class)->get('value');  
+app(\Motomedialab\RuntimeStore\RuntimeStore::class)->get('value');
+\Motomedialab\RuntimeStore\RuntimeStoreFacade::get('value');
 app('store')->get('value');  
 resolve('store')->get('value');  
 
