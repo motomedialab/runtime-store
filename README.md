@@ -133,7 +133,9 @@ function store() {
     
     return $store = new \Motomedialab\RuntimeStore\RuntimeStore;  
 }
+```
 
+```php
 // OOP example
 class ClassWithStore {
   protected $store;
