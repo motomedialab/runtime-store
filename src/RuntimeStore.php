@@ -20,8 +20,8 @@ class RuntimeStore
      * Set a value against our store.
      * Core method.
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string $key
+     * @param  mixed  $value
      * @return mixed
      */
     public function set($key, $value): mixed
@@ -36,8 +36,8 @@ class RuntimeStore
      * Retrieve a value from our store.
      * Core method.
      *
-     * @param string $key
-     * @param mixed $default
+     * @param  string $key
+     * @param  mixed  $default
      * @return mixed
      */
     public function get($key, $default = false): mixed
@@ -53,7 +53,7 @@ class RuntimeStore
      * Remove one or more values from our store.
      * Core method.
      *
-     * @param string|array $keys
+     * @param  string|array $keys
      * @return $this
      */
     public function forget($keys): static
@@ -72,8 +72,8 @@ class RuntimeStore
     /**
      * Alias of set.
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string $key
+     * @param  mixed  $value
      * @return mixed
      */
     public function put($key, $value): mixed
@@ -84,8 +84,8 @@ class RuntimeStore
     /**
      * Alias of set.
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string $key
+     * @param  mixed  $value
      * @return mixed
      */
     public function add($key, $value): mixed
@@ -96,8 +96,8 @@ class RuntimeStore
     /**
      * Increment a stored value.
      *
-     * @param string $key
-     * @param int $incrementBy
+     * @param  string $key
+     * @param  int    $incrementBy
      * @return int
      */
     public function increment($key, $incrementBy = 1): int
@@ -112,8 +112,8 @@ class RuntimeStore
     /**
      * Decrement a stored value.
      *
-     * @param string $key
-     * @param int $decrementBy
+     * @param  string $key
+     * @param  int    $decrementBy
      * @return int
      */
     public function decrement($key, $decrementBy = 1): int
@@ -129,8 +129,8 @@ class RuntimeStore
      * Set a value to our store, or return the existing value
      * if already available within the store.
      *
-     * @param string $key
-     * @param Closure $value
+     * @param  string  $key
+     * @param  Closure $value
      * @return mixed
      */
     public function remember($key, Closure $value): mixed
@@ -145,7 +145,7 @@ class RuntimeStore
     /**
      * Determine if our store already has a particular value.
      *
-     * @param string $key
+     * @param  string $key
      * @return bool
      */
     public function has($key): bool
@@ -156,7 +156,7 @@ class RuntimeStore
     /**
      * Alias of forget.
      *
-     * @param string $key
+     * @param  string $key
      */
     public function delete($key)
     {
@@ -177,8 +177,8 @@ class RuntimeStore
     /**
      * Retrieve an item from the store and delete it.
      *
-     * @param      $key
-     * @param bool $default
+     * @param       $key
+     * @param  bool $default
      * @return mixed
      */
     public function pull($key, $default = false): mixed
