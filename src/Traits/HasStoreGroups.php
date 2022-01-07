@@ -21,11 +21,10 @@ trait HasStoreGroups
     /**
      * Create a store group.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return RuntimeStore
      */
-    public function group(string $name)
+    public function group(string $name): RuntimeStore
     {
         if (array_key_exists($name, $this->groups)) {
             return $this->groups[$name];
@@ -37,11 +36,10 @@ trait HasStoreGroups
     /**
      * Checks if a group exists.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return bool
      */
-    public function hasGroup(string $name)
+    public function hasGroup(string $name): bool
     {
         return isset($this->groups[$name]);
     }
@@ -49,7 +47,7 @@ trait HasStoreGroups
     /**
      * Delete a group store.
      *
-     * @param string $name
+     * @param  string  $name
      */
     public function deleteGroup(string $name)
     {
