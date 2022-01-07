@@ -14,18 +14,17 @@ class RuntimeStore
      *
      * @var array
      */
-    private $store = [];
+    private array $store = [];
 
     /**
      * Set a value against our store.
      * Core method.
      *
      * @param string $key
-     * @param mixed  $value
-     *
+     * @param mixed $value
      * @return mixed
      */
-    public function set($key, $value)
+    public function set($key, $value): mixed
     {
         $this->store[$key] = $value instanceof Closure
             ? $value() : $value;
@@ -38,11 +37,10 @@ class RuntimeStore
      * Core method.
      *
      * @param string $key
-     * @param mixed  $default
-     *
+     * @param mixed $default
      * @return mixed
      */
-    public function get($key, $default = false)
+    public function get($key, $default = false): mixed
     {
         if ($this->has($key)) {
             return $this->store[$key];
@@ -56,10 +54,9 @@ class RuntimeStore
      * Core method.
      *
      * @param string|array $keys
-     *
      * @return $this
      */
-    public function forget($keys)
+    public function forget($keys): static
     {
         $keys = is_array($keys) ? $keys : [$keys];
 
@@ -76,11 +73,10 @@ class RuntimeStore
      * Alias of set.
      *
      * @param string $key
-     * @param mixed  $value
-     *
+     * @param mixed $value
      * @return mixed
      */
-    public function put($key, $value)
+    public function put($key, $value): mixed
     {
         return $this->set($key, $value);
     }
@@ -89,11 +85,10 @@ class RuntimeStore
      * Alias of set.
      *
      * @param string $key
-     * @param mixed  $value
-     *
+     * @param mixed $value
      * @return mixed
      */
-    public function add($key, $value)
+    public function add($key, $value): mixed
     {
         return $this->set($key, $value);
     }
@@ -103,10 +98,9 @@ class RuntimeStore
      *
      * @param string $key
      * @param int $incrementBy
-     *
-     * @return bool|int|mixed
+     * @return int
      */
-    public function increment($key, $incrementBy = 1)
+    public function increment($key, $incrementBy = 1): int
     {
         if ($this->has($key) && is_numeric($this->get($key))) {
             return $this->set($key, $this->get($key) + $incrementBy);
@@ -120,10 +114,9 @@ class RuntimeStore
      *
      * @param string $key
      * @param int $decrementBy
-     *
-     * @return bool|int|mixed
+     * @return int
      */
-    public function decrement($key, $decrementBy = 1)
+    public function decrement($key, $decrementBy = 1): int
     {
         if ($this->has($key) && is_numeric($this->get($key))) {
             return $this->set($key, $this->get($key) - $decrementBy);
@@ -136,12 +129,11 @@ class RuntimeStore
      * Set a value to our store, or return the existing value
      * if already available within the store.
      *
-     * @param string  $key
+     * @param string $key
      * @param Closure $value
-     *
      * @return mixed
      */
-    public function remember($key, Closure $value)
+    public function remember($key, Closure $value): mixed
     {
         if ($this->has($key)) {
             return $this->get($key);
@@ -154,10 +146,9 @@ class RuntimeStore
      * Determine if our store already has a particular value.
      *
      * @param string $key
-     *
      * @return bool
      */
-    public function has($key)
+    public function has($key): bool
     {
         return array_key_exists($key, $this->store);
     }
@@ -174,10 +165,9 @@ class RuntimeStore
 
     /**
      * Clear all cached values.
-     *
      * @return $this
      */
-    public function clear()
+    public function clear(): static
     {
         $this->store = [];
 
@@ -189,10 +179,9 @@ class RuntimeStore
      *
      * @param      $key
      * @param bool $default
-     *
-     * @return bool|mixed
+     * @return mixed
      */
-    public function pull($key, $default = false)
+    public function pull($key, $default = false): mixed
     {
         if ($this->has($key)) {
             $return = $this->get($key, $default);
